@@ -2,6 +2,7 @@ package pl.workshop2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Arrays;
 
 public class Main2 {	
 	
@@ -10,10 +11,12 @@ public class Main2 {
 		
 		try (Connection conn = DbUtil.getConn()) {
 				
-				User toModify = new User();
-				toModify=User.loadUserById(conn, 2);
-				toModify.setEmail("zdzislaw_pierwszy@lalamido.pl");
-				toModify.saveToDB(conn);
+				Solution[] toModify = new Solution[0];
+				toModify=Solution.loadAllSolutions(conn);
+	//			toModify.setDescription("this is a test of modifying desc in solution, mainly for update date");
+	//			toModify.saveToDB(conn);
+	
+				System.out.println(Arrays.toString(toModify));
 				
 		} catch (Exception e) {
 			System.out.print(e.getMessage());

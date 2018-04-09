@@ -9,15 +9,17 @@ import java.util.ArrayList;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class User {
-    public int id;
-    public String username;
-    public String password;
-    public String email;
+    protected int id;
+    protected String username;
+    protected String password;
+    protected String email;
+    protected int userGroupId;
 	
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, int userGroupId) {
 		this.username = username;
 		this.email = email;
-		this.setPassword(password);		
+		this.setPassword(password);
+		this.userGroupId = userGroupId;		
 	}
     
     public User() {}
@@ -45,8 +47,16 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+		
 	
-	
+	public int getUserGroupId() {
+		return userGroupId;
+	}
+
+	public void setUserGroupId(int userGroupId) {
+		this.userGroupId = userGroupId;
+	}
+
 	public void saveToDB(Connection conn) throws SQLException {
 		  if (this.id == 0) {
 		    String sql = "INSERT INTO Users(username, email, password) VALUES (?, ?, ?)";

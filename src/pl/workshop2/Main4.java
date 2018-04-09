@@ -2,24 +2,22 @@ package pl.workshop2;
 
 import java.sql.Connection;
 
-public class Main1 {
+public class Main4 {
 	
 	
-	//add new user to database using setters (also possible by constructor)
+	//add new ex to database using constructor (also possible by setters)
 	public static void main(String[] args) {
 		
 				
 		try (Connection c = DbUtil.getConn()) {
 			
-		Solution solo = new Solution("test solution3", 2, 3);
-		
-		solo.saveToDB(c);
-		
-						
+			Excercise exce = new Excercise("Excercise 3", "test ex 3, so far so good");
+			exce.saveToDB(c);
+			
 		} catch (Exception e) {
 			System.out.print(e.getMessage());
 		}
+		
 	}
+	
 }
-
-

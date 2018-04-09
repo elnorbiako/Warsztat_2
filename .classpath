@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/home/norbiak/workspace/biblioteki/jBCrypt-0.4.zip"/>
 	<classpathentry kind="lib" path="/home/norbiak/workspace/biblioteki/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46-bin.jar"/>
+	<classpathentry kind="lib" path="/home/norbiak/workspace/biblioteki/commons-lang3-3.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
