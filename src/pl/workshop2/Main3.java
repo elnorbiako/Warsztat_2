@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Main3 {
 	
 	
-	//print all users (using toString) 
+	//print all users from table (using toString) 
 	public static void main(String[] args) {
 		
 		try (Connection c = DbUtil.getConn()) {
