@@ -12,7 +12,7 @@ public class Main2 {
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/workshop2_ex?useSSL=false",
                 "root", "coderslab")) {
 				
-				System.out.println(User.loadUserById(conn, 1));
+				System.out.println(User.loadUserById(conn, 2));
 				
 		} catch (Exception e) {
 			System.out.print(e.getMessage());

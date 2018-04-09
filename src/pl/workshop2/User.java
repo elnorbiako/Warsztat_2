@@ -110,6 +110,17 @@ public class User {
 	        users.add(loadedUser);}
 	    User[] uArray = new User[users.size()]; uArray = users.toArray(uArray);
 	    return uArray;}
+	
+	public void delete(Connection conn) throws SQLException {
+	    if (this.id != 0) {
+	        String sql = "DELETE FROM Users WHERE id= ?";
+	        PreparedStatement preparedStatement;
+	        preparedStatement = conn.prepareStatement(sql);
+	        preparedStatement.setInt(1, this.id);
+	        preparedStatement.executeUpdate();
+	        this.id=0;
+	    }
+	}
        
 }
 
