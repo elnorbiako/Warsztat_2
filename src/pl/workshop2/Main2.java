@@ -3,16 +3,17 @@ package pl.workshop2;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Main2 {
+public class Main2 {	
 	
-	
-	
+	//modify user: 1st load by ID, modify email, save to database
 	public static void main(String[] args) {
 		
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/workshop2_ex?useSSL=false",
-                "root", "coderslab")) {
+		try (Connection conn = DbUtil.getConn()) {
 				
-				System.out.println(User.loadUserById(conn, 2));
+				User toModify = new User();
+				toModify=User.loadUserById(conn, 2);
+				toModify.setEmail("zdzislaw_pierwszy@lalamido.pl");
+				toModify.saveToDB(conn);
 				
 		} catch (Exception e) {
 			System.out.print(e.getMessage());

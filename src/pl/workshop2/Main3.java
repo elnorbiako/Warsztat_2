@@ -7,13 +7,12 @@ import java.util.Arrays;
 public class Main3 {
 	
 	
-	
+	//print all users (using toString) 
 	public static void main(String[] args) {
 		
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/workshop2_ex?useSSL=false",
-                "root", "coderslab")) {
+		try (Connection c = DbUtil.getConn()) {
 				
-				System.out.println(Arrays.toString(User.loadAllUsers(conn)));
+				System.out.println(Arrays.toString(User.loadAllUsers(c)));
 				
 		} catch (Exception e) {
 			System.out.print(e.getMessage());

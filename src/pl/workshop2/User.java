@@ -60,8 +60,8 @@ public class User {
 		    ResultSet rs = preparedStatement.getGeneratedKeys();
 		    if (rs.next()) {
 		      this.id = rs.getInt(1);
-		    }
-		    else {
+		    	}
+		  } else {
 			    String sql1 = "UPDATE Users SET username=?, email=?, password=? where id = ?";
 			    PreparedStatement preparedStatement1;
 			    preparedStatement1 = conn.prepareStatement(sql1);
@@ -73,7 +73,7 @@ public class User {
 			}
 		  }
 		  
-	}
+	
 		
 	
 	static public User loadUserById(Connection conn, int id) throws SQLException {
