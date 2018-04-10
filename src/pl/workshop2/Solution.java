@@ -160,7 +160,6 @@ public class Solution {
 	    
 	}
 
-
 	@Override
 	public String toString() {
 		return "Solution [id=" + id + ", created=" + created + ", updated=" + updated + ", description=" + description
