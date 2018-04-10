@@ -28,31 +28,27 @@ public class Main1 {
 			System.out.println(ArrayUtils.toString(User.loadAllUsers(conn)));	
 				
 			System.out.println("Choose option: 'add' 'edit' 'delete' for users, or 'quit' to end :");
-			String command = scan.nextLine();
+			String command = scan.next();
 			
 			while(!command.equals("quit")) {
 				
 				
 				try {
 					
-					if (!command.equals("add")  && !command.equals("edit") && !command.equals("delete")){
-						System.out.println("Please try again");
-						}
-				
-				 
-					else if (command.equals("add")) {
+					if (command.equals("add")) {
 					
 						System.out.println("New user name:");
 						String username = scan.nextLine();
 						
 						System.out.println("Password for " + username + " :");
-						String password = scan.nextLine();
+						String password = scan.next();
 						
 						System.out.println("Email for " + username + " :");
-						String email = scan.nextLine();
+						String email = scan.next();
 						
 						System.out.println("Set group id for " + username + " :");
-						int userGroupId = scan.nextInt();					
+						int userGroupId = scan.nextInt();
+						scan.nextLine();
 						
 						User user= new User(username, password, email, userGroupId);
 						
@@ -63,9 +59,10 @@ public class Main1 {
 						
 						System.out.println("User Id to edit:");
 						int userId = scan.nextInt();
+						scan.nextLine();
 						
 						System.out.println("New username: ");
-						String usernameEdit = scan.next();
+						String usernameEdit = scan.nextLine();
 						
 						System.out.println("New password for " + usernameEdit + " :");
 						String password = scan.next();
@@ -74,7 +71,8 @@ public class Main1 {
 						String email = scan.next();
 						
 						System.out.println("New group id for " + usernameEdit + " :");
-						int userGroupId = scan.nextInt();				
+						int userGroupId = scan.nextInt();
+						scan.nextLine();
 						
 						User editUser= User.loadUserById(conn, userId);
 						
@@ -96,7 +94,12 @@ public class Main1 {
 						delUser.delete(conn);				
 					}
 					
-								
+					else 
+			//			if (!command.equals("add")  && !command.equals("edit") && !command.equals("delete"))
+						{
+						System.out.println("Please try again");
+						}
+											
 				} catch (SQLException e) {
 				System.out.print("Incorrect input: " + e.getMessage());
 				
@@ -110,7 +113,7 @@ public class Main1 {
 				System.out.println(ArrayUtils.toString(User.loadAllUsers(conn)));	
 					
 				System.out.println("Choose option: 'add' 'edit' 'delete' for users, or 'quit' to end :");
-				command = scan.nextLine();
+				command = scan.next();
 			}
 								
 			scan.close();
