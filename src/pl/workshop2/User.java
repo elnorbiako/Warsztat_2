@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+
 public class User {
     protected int id;
     protected String username;
@@ -57,6 +58,11 @@ public class User {
 		this.userGroupId = userGroupId;
 	}
 
+	/**
+	 * Method saves to database - if it is a new record: creates one, if such record exists: updates it
+	 * @param conn
+	 * @throws SQLException
+	 */
 	public void saveToDB(Connection conn) throws SQLException {
 		  if (this.id == 0) {
 		    String sql = "INSERT INTO Users(username, email, password, user_group_id) VALUES (?, ?, ?, ?)";
@@ -87,7 +93,13 @@ public class User {
 		  
 	
 		
-	
+	/**
+	 * 
+	 * @param conn
+	 * @param id
+	 * @return User with given Id
+	 * @throws SQLException
+	 */
 	static public User loadUserById(Connection conn, int id) throws SQLException {
 	    String sql = "SELECT * FROM Users where id=?";
 	    PreparedStatement preparedStatement;
@@ -105,7 +117,12 @@ public class User {
 	    return null;}
 	
 	
-
+	/**
+	 * 
+	 * @param conn
+	 * @return Array of all users
+	 * @throws SQLException
+	 */
 	static public User[] loadAllUsers(Connection conn) throws SQLException {
 	    ArrayList<User> users = new ArrayList<User>();
 	    String sql = "SELECT * FROM Users"; PreparedStatement preparedStatement;
@@ -123,7 +140,11 @@ public class User {
 	    return uArray;}
 	
 	
-	
+	/**
+	 * Method delete a loaded user  
+	 * @param conn
+	 * @throws SQLException
+	 */
 	public void delete(Connection conn) throws SQLException {
 	    if (this.id != 0) {
 	        String sql = "DELETE FROM Users WHERE id= ?";
@@ -135,7 +156,13 @@ public class User {
 	    }
 	}
 	
-	
+	/**
+	 * 
+	 * @param conn
+	 * @param id
+	 * @return Array of users that belong to given group (by group_id)
+	 * @throws SQLException
+	 */
 	static public User[] loadAllByGrupId(Connection conn, int id) throws SQLException {
 	    ArrayList<User> users = new ArrayList<User>();
 	    String sql = "SELECT * FROM Users where user_group_id=?"; PreparedStatement preparedStatement;

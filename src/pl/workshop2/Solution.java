@@ -83,7 +83,11 @@ public class Solution {
 		return id;
 	}
 	
-	
+	/**
+	 * Method saves new/updates existing record to database
+	 * @param conn
+	 * @throws SQLException
+	 */
 	public void saveToDB(Connection conn) throws SQLException {
 		  if (this.id == 0) {
 		    String sql = "INSERT INTO solution (description, created, users_id, excercise_id) VALUES (?, NOW(), ?, ?)";
@@ -111,6 +115,13 @@ public class Solution {
 		  }
 		  
 	
+	/**
+	 * 
+	 * @param conn
+	 * @param id
+	 * @return Solution with given Id
+	 * @throws SQLException
+	 */
 	static public Solution loadSolutionById(Connection conn, int id) throws SQLException {
 	    String sql = "SELECT * FROM solution where id=?";
 	    PreparedStatement preparedStatement;
@@ -129,7 +140,12 @@ public class Solution {
 	    return null;}
 	
 	
-	
+	/**
+	 * 
+	 * @param conn
+	 * @return All solutions 
+	 * @throws SQLException
+	 */
 	static public Solution[] loadAllSolutions(Connection conn) throws SQLException {
 	    ArrayList<Solution> sols = new ArrayList<Solution>();
 	    String sql = "SELECT * FROM solution"; PreparedStatement preparedStatement;
@@ -160,6 +176,13 @@ public class Solution {
 	    
 	}
 	
+	/**
+	 * 
+	 * @param conn
+	 * @param id
+	 * @return All solutions for User with given id 
+	 * @throws SQLException
+	 */
 	static public Solution[] loadAllByUserId(Connection conn, int id) throws SQLException {
 	    ArrayList<Solution> sols = new ArrayList<Solution>();
 	    String sql = "SELECT * FROM solution where users_id=?"; PreparedStatement preparedStatement;
@@ -178,7 +201,13 @@ public class Solution {
 	    Solution[] uArray = new Solution[sols.size()]; uArray = sols.toArray(uArray);
 	    return uArray;}
 	
-	
+	/**
+	 * 
+	 * @param conn
+	 * @param id
+	 * @return All solutions for Excercise with given id
+	 * @throws SQLException
+	 */
 	static public Solution[] loadAllByExerciseId(Connection conn, int id) throws SQLException {
 	    ArrayList<Solution> sols = new ArrayList<Solution>();
 	    String sql = "SELECT * FROM solution where excercise_id=? ORDER BY created DESC"; PreparedStatement preparedStatement;

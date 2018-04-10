@@ -37,6 +37,11 @@ public class Group {
 		this.name = name;
 	}
     
+	/**
+	 * Method saves new/updates existing record to database
+	 * @param conn
+	 * @throws SQLException
+	 */
 	public void saveToDB(Connection conn) throws SQLException {
 		  if (this.id == 0) {
 		    String sql = "INSERT INTO user_group (name) VALUES (?)";
@@ -59,6 +64,13 @@ public class Group {
 			}
 		  }
 	
+	/**
+	 * 
+	 * @param conn
+	 * @param id
+	 * @return Group with given Id
+	 * @throws SQLException
+	 */
 	static public Group loadGroupById(Connection conn, int id) throws SQLException {
 	    String sql = "SELECT * FROM user_group where id=?";
 	    PreparedStatement preparedStatement;
@@ -72,7 +84,12 @@ public class Group {
 	        return loadedGroup;}
 	    return null;}
     
-	
+	/**
+	 * 
+	 * @param conn
+	 * @return All groups as an Array
+	 * @throws SQLException
+	 */
 	static public Group[] loadAllGroups(Connection conn) throws SQLException {
 	    ArrayList<Group> groups = new ArrayList<Group>();
 	    String sql = "SELECT * FROM user_group"; PreparedStatement preparedStatement;

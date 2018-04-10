@@ -43,7 +43,11 @@ public class Excercise {
 		return id;
 	}
 	
-	
+	/**
+	 * Method that save new/update existing record in database  
+	 * @param conn
+	 * @throws SQLException
+	 */
 	public void saveToDB(Connection conn) throws SQLException {
 		  if (this.id == 0) {
 		    String sql = "INSERT INTO excercise (title, description) VALUES (?, ?)";
@@ -70,7 +74,13 @@ public class Excercise {
 		  
 	
 		
-	
+	/**
+	 * 
+	 * @param conn
+	 * @param id
+	 * @return Exercise with given id
+	 * @throws SQLException
+	 */
 	static public Excercise loadExById(Connection conn, int id) throws SQLException {
 	    String sql = "SELECT * FROM excercise where id=?";
 	    PreparedStatement preparedStatement;
@@ -86,7 +96,12 @@ public class Excercise {
 	    return null;}
 	
 	
-
+	/**
+	 * 
+	 * @param conn
+	 * @return All excercises as an Array
+	 * @throws SQLException
+	 */
 	static public Excercise[] loadAllEx(Connection conn) throws SQLException {
 	    ArrayList<Excercise> exces = new ArrayList<Excercise>();
 	    String sql = "SELECT * FROM excercise"; PreparedStatement preparedStatement;
@@ -101,6 +116,12 @@ public class Excercise {
 	    Excercise[] uArray = new Excercise[exces.size()]; uArray = exces.toArray(uArray);
 	    return uArray;}
 	
+	
+	/**
+	 * Method deletes a loaded excersice 
+	 * @param conn
+	 * @throws SQLException
+	 */
 	public void delete(Connection conn) throws SQLException {
 	    if (this.id != 0) {
 	        String sql = "DELETE FROM excercise WHERE id= ?";
