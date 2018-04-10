@@ -159,11 +159,50 @@ public class Solution {
 	    }
 	    
 	}
+	
+	static public Solution[] loadAllByUserId(Connection conn, int id) throws SQLException {
+	    ArrayList<Solution> sols = new ArrayList<Solution>();
+	    String sql = "SELECT * FROM solution where users_id=?"; PreparedStatement preparedStatement;
+	    preparedStatement = conn.prepareStatement(sql);
+	    preparedStatement.setInt(1, id);
+	    ResultSet resultSet = preparedStatement.executeQuery();
+	    while (resultSet.next()) {
+	        Solution loadedSolution = new Solution();
+	        loadedSolution.id = resultSet.getInt("id");
+	        loadedSolution.description = resultSet.getString("description");
+	        loadedSolution.created = resultSet.getString("created");
+	        loadedSolution.updated = resultSet.getString("updated");
+	        loadedSolution.usersId = resultSet.getInt("users_id");
+	        loadedSolution.excerciseId = resultSet.getInt("excercise_id");
+	        sols.add(loadedSolution);}
+	    Solution[] uArray = new Solution[sols.size()]; uArray = sols.toArray(uArray);
+	    return uArray;}
+	
+	
+	static public Solution[] loadAllByExerciseId(Connection conn, int id) throws SQLException {
+	    ArrayList<Solution> sols = new ArrayList<Solution>();
+	    String sql = "SELECT * FROM solution where excercise_id=? ORDER BY created DESC"; PreparedStatement preparedStatement;
+	    preparedStatement = conn.prepareStatement(sql);
+	    preparedStatement.setInt(1, id);
+	    ResultSet resultSet = preparedStatement.executeQuery();
+	    while (resultSet.next()) {
+	        Solution loadedSolution = new Solution();
+	        loadedSolution.id = resultSet.getInt("id");
+	        loadedSolution.description = resultSet.getString("description");
+	        loadedSolution.created = resultSet.getString("created");
+	        loadedSolution.updated = resultSet.getString("updated");
+	        loadedSolution.usersId = resultSet.getInt("users_id");
+	        loadedSolution.excerciseId = resultSet.getInt("excercise_id");
+	        sols.add(loadedSolution);}
+	    Solution[] uArray = new Solution[sols.size()]; uArray = sols.toArray(uArray);
+	    return uArray;}
+	
+	
 
 	@Override
 	public String toString() {
 		return "Solution [id=" + id + ", created=" + created + ", updated=" + updated + ", description=" + description
-				+ ", excerciseId=" + excerciseId + ", usersId=" + usersId + "]";
+				+ ", excerciseId=" + excerciseId + ", usersId=" + usersId + "] \n";
 	}
 	
 	    

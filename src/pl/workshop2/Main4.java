@@ -2,6 +2,8 @@ package pl.workshop2;
 
 import java.sql.Connection;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 public class Main4 {
 	
 	
@@ -11,8 +13,11 @@ public class Main4 {
 				
 		try (Connection c = DbUtil.getConn()) {
 			
-			Excercise exce = new Excercise("Excercise 3", "test ex 3, so far so good");
-			exce.saveToDB(c);
+			Solution[] s = new Solution[0];
+			s=Solution.loadAllByExerciseId(c, 2);
+			
+			
+			System.out.println(ArrayUtils.toString(s));
 			
 		} catch (Exception e) {
 			System.out.print(e.getMessage());

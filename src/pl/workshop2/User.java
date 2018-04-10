@@ -122,6 +122,8 @@ public class User {
 	    User[] uArray = new User[users.size()]; uArray = users.toArray(uArray);
 	    return uArray;}
 	
+	
+	
 	public void delete(Connection conn) throws SQLException {
 	    if (this.id != 0) {
 	        String sql = "DELETE FROM Users WHERE id= ?";
