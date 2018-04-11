@@ -226,6 +226,29 @@ public class Solution {
 	    Solution[] uArray = new Solution[sols.size()]; uArray = sols.toArray(uArray);
 	    return uArray;}
 	
+	// próba dodania metody zwracającej nierozwiazane zadania dla user id
+	
+	static public Solution loadUnsolvedById(Connection conn, int id) throws SQLException {
+	    String sql = "SELECT * FROM excercise left JOIN solution ON excercise.id=solution.excercise_id where solution.user_id= ? and excercise.id=null;";
+	    PreparedStatement preparedStatement;
+	    preparedStatement = conn.prepareStatement(sql);
+	    preparedStatement.setInt(1, id);
+	    ResultSet resultSet = preparedStatement.executeQuery();
+	    if (resultSet.next()) {
+	        Solution loadedSolution = new Solution();
+	        loadedSolution.id = resultSet.getInt("id");
+	        loadedSolution.description = resultSet.getString("description");
+	        loadedSolution.created = resultSet.getString("created");
+	        loadedSolution.updated = resultSet.getString("updated");
+	        loadedSolution.excerciseId = resultSet.getInt("excercise_id");
+	        loadedSolution.usersId = resultSet.getInt("users_id");
+	        return loadedSolution;}
+	    return null;}
+	
+	
+	
+	
+	
 	
 
 	@Override
