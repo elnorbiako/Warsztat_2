@@ -23,6 +23,10 @@ public class Group {
 	}
 
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -116,7 +120,7 @@ public class Group {
 
 	@Override
 	public String toString() {
-		return "Group [id=" + id + ", name=" + name + "]";
+		return "Group [id=" + id + ", name=" + name + "] \n";
 	}
 	
 	

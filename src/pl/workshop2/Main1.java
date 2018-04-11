@@ -1,3 +1,4 @@
+
 package pl.workshop2;
 
 import java.sql.Connection;
@@ -17,7 +18,7 @@ public class Main1 {
 	}
 
 
-	protected static void adminMenuUsers() {
+	public static void adminMenuUsers() {
 		
 		Scanner scan = new Scanner(System.in);
 		
